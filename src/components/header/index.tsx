@@ -1,6 +1,6 @@
 import { signOut } from "firebase/auth";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom'
 import { UserContext } from "../../context/UserContext";
 import { auth } from "../../services/firebaseConnection";
 
@@ -9,7 +9,7 @@ export function Header() {
   const {state} = useContext(UserContext)
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light mb-3" style={{ minHeight: '80px' }}>
+    <nav className="navbar navbar-expand-lg navbar-light bg-light mb-3" data-testid="header" style={{ minHeight: '80px' }}>
       <div className="container">
         <Link className="navbar-brand" to="/" id="bemVindoButton" data-testid="bemVindoButton">Bem-vindo</Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

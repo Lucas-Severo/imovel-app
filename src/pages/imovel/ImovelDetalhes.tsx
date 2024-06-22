@@ -7,10 +7,12 @@ export function ImovelDetalhes() {
     const { id } = useParams<{ id?: string }>();
     const [imovel, setImovel] = useState<Imovel>()
 
+    // buscar o imóvel ao construir objeto
     useEffect(() => {
       buscarImovel()
     }, [])
 
+    // buscar o imóvel por id passado na rota
     const buscarImovel = async () => {
       if (id) {
         getImovelById(id).then(imovel => {
@@ -19,6 +21,7 @@ export function ImovelDetalhes() {
       }
     }
 
+    // método para remover imóvel e voltar para listagem de imóveis
     const removerImovel = async () => {
       if (id) {
         await removeImovelById(id)
@@ -26,18 +29,21 @@ export function ImovelDetalhes() {
       }
     }
 
+    // método para abrir modal de alugar imóvel
     const alugarImovel = async (id: string) => {
       if (id) {
         navigate('alugar', {state: imovel})
       }
     }
 
+    // método para abrir modal de comprar imóvel
     const comprarImovel = async (imovel: Imovel) => {
       if (imovel.id) {
         navigate('comprar', {state: imovel})
       }
     }
 
+    // método para abrir modal de liberar imóvel
     const liberarImovel = async (imovel: Imovel) => {
       if (imovel.id) {
         await liberarAluguelImovel(imovel)

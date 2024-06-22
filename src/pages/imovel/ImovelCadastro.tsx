@@ -18,6 +18,7 @@ export function ImovelCadastro() {
         valorCompra: 0
     })
 
+    // inicializar lista de estados com lista padrão
     const [estados] = useState(['Acre (AC)', 'Alagoas (AL)', 'Amapá (AP)', 'Amazonas (AM)', 
         'Bahia (BA)', 'Ceará (CE)', 'Distrito Federal (DF)', 'Espírito Santo (ES)', 
         'Goiás (GO)', 'Maranhão (MA)', 'Mato Grosso (MT)', 'Mato Grosso do Sul (MS)', 
@@ -29,6 +30,7 @@ export function ImovelCadastro() {
     const [permiteCompra, setPermiteCompra] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
 
+    // salvar um imóvel
     const salvarImovel = async () => {
         if(validarFormulario()) {
             await addImovel(imovel)
@@ -36,6 +38,7 @@ export function ImovelCadastro() {
         }
     }
 
+    // validar todas as propriedades obrigatórias preenchidas
     const validarFormulario = () => {
         let message = ''
         if (imovel.descricao === undefined || imovel.descricao === '') {

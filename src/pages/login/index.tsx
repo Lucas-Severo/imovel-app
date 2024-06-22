@@ -39,6 +39,7 @@ export function Login() {
                     <form onSubmit={handleSubmit}>
                         <div>
                             <input
+                                data-testid="input-email"
                                 className="input-group form-control"
                                 style={{minWidth: '260px'}}
                                 placeholder="joão@silva.com"
@@ -49,6 +50,7 @@ export function Login() {
                         </div>
                         <div className="input-group mt-2">
                             <input
+                                data-testid="input-senha"
                                 className="form-control"
                                 style={{minWidth: '260px'}}
                                 placeholder="********"
@@ -58,7 +60,7 @@ export function Login() {
                             />
                         </div>
                         {error && <p style={{ color: 'red' }}>{error}</p>}
-                        <button className="btn btn-success" style={{minWidth: '260px', margin: '0 auto', marginTop: '20px'}} type="submit">Entrar</button>
+                        <button data-testid="botao-login" className="btn btn-success" style={{minWidth: '260px', margin: '0 auto', marginTop: '20px'}} type="submit">Entrar</button>
                     </form>
                 </div>
             </div>

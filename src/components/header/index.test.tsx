@@ -1,46 +1,37 @@
-import {render, waitForElementToBeRemoved} from "@testing-library/react"
-import { NotFound } from "../../pages/notfound"
-
-import { RouterProvider } from 'react-router-dom'
-import { router } from '../../routes'
+import { render } from "@testing-library/react";
+import { RouterProvider } from 'react-router-dom';
+import { Header } from ".";
+import UserProvider from "../../context/UserContext";
+import { router } from '../../routes';
 
 
 describe("No Sobre", () => {
-    const mockAoSubmeter = jest.fn();
+    const dispatch = jest.fn();
 
     test('Deve ter botão bem vindo para página inicial', async () => {
-
-        //ARRANGE - organiza os elementos em variáveis
-
-        //Importa as funções e renderiza o componente Formulario
-        const { getByRole, getByTestId, container } = render(<RouterProvider router={ router }><NotFound/></RouterProvider>)
+        const { getByTestId } = render(<UserProvider><RouterProvider dispatch={ dispatch } router={ router }><Header/></RouterProvider></UserProvider>)
 
         //Buscao botão pela função
         const botaoAdicionar = await getByTestId("bemVindoButton")
 
-        //ASSERT - cria hipóteses para serem testadas   
-
-        //Verifica se os elementos estão na págin
-
-        //Verifica se o botão está desabilitado
         expect(botaoAdicionar?.textContent).toEqual("Bem-vindo")
     })
 
-    test('Deve ter botão favorito', async () => {
-
-        //ARRANGE - organiza os elementos em variáveis
-
-        //Importa as funções e renderiza o componente Formulario
-        const { getByTestId, container } = render(<RouterProvider router={ router }><NotFound/></RouterProvider>)
+    test('Deve ter botão imóveis', async () => {
+        const { getByTestId } = render(<UserProvider><RouterProvider router={ router }><Header/></RouterProvider></UserProvider>)
 
         //Buscao botão pela função
-        const botaoAdicionar = await getByTestId("favoritosButton")
+        const botaoAdicionar = await getByTestId("imoveisButton")
 
-        //ASSERT - cria hipóteses para serem testadas   
+        expect(botaoAdicionar?.textContent).toEqual("Imóveis")
+    })
 
-        //Verifica se os elementos estão na págin
+    test('Deve ter botão agendamentos', async () => {
+        const { getByTestId } = render(<UserProvider><RouterProvider router={ router }><Header/></RouterProvider></UserProvider>)
 
-        //Verifica se o botão está desabilitado
-        expect(botaoAdicionar?.textContent).toEqual("Favoritos")
+        //Buscao botão pela função
+        const botaoAdicionar = await getByTestId("agendamentosButton")
+
+        expect(botaoAdicionar?.textContent).toEqual("Agendamentos")
     })
 })

@@ -2,6 +2,7 @@ import { Timestamp, addDoc, collection, deleteDoc, doc, getDoc, getDocs, setDoc 
 import { db } from "./firebaseConnection"
 import { Imovel } from "./imovelService"
 
+//Tipo utilizado para salvar os dados da agenda no banco de dados
 export type AgendamentoVisita = {
     id?: string,
     imovelId: string,
@@ -10,6 +11,7 @@ export type AgendamentoVisita = {
     observacao: string
 }
 
+//Tipos de retorno das informações do banco de dados
 export type AgendamentoVisitaImovel = {
     id?: string,
     imovel: Imovel,
@@ -18,6 +20,7 @@ export type AgendamentoVisitaImovel = {
     observacao: string
 }
 
+// Método para salvar uma nova agenda
 export const addAgendamentoVisita = async (agendamentoVisita: AgendamentoVisita) => {
     const agendamentoVisitaReference = await collection(db, 'agendamento')
 
@@ -34,6 +37,7 @@ export const addAgendamentoVisita = async (agendamentoVisita: AgendamentoVisita)
     return document
 }
 
+// Método para obter todas as agendas cadastradas
 export const getAgendamentoVisitas = async (): Promise<AgendamentoVisitaImovel[]> => {
     const agendamentoVisitaCollectionRef = collection(db, 'agendamento')
     const imovelCollectionRef = collection(db, 'imovel')
@@ -54,6 +58,7 @@ export const getAgendamentoVisitas = async (): Promise<AgendamentoVisitaImovel[]
     return agendamentos
 }
 
+// Método para remover uma agenda
 export const removeAgendamentoById = async (id: string) => {
     await deleteDoc(doc(db, "agendamento", id));
 }

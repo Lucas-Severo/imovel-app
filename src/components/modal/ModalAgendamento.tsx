@@ -14,11 +14,12 @@ export function ModalAgendamento() {
     const [dateTime, setDateTime] = useState(new Date())
     const [observacao, setObservacao] = useState('')
 
-
+    // redireciona de volta para a página de detalhes do imóvel
     const handleClose = () => {
         navigate(`/imoveis/${id}`)
     }
 
+    // salva um novo agendamento e vincula ao usuário autenticado na sessão
     const handleSave = async () => {
         if (id && state.currentUser) {
             const agendamentoVisita: AgendamentoVisita = {
@@ -34,6 +35,7 @@ export function ModalAgendamento() {
         }
     }
 
+    // formata a data que foi cadastrada no agendamento
     function obterDataPadrao() {
         return toLocalISOString(dateTime)
     }
@@ -50,13 +52,14 @@ export function ModalAgendamento() {
         <>
         <Modal 
             centered show={true} 
-            keyboard={false}>
+            keyboard={false}
+            id="modal-agendamento">
             <Modal.Header closeButton onHide={handleClose}>
             <Modal.Title>Agendar Visita</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <div>
-                    <input aria-label="Date and time" type="datetime-local" value={obterDataPadrao()} onChange={value => setDateTime(new Date(value.target.value))} />
+                    <input aria-label="Date and time" data-testid="input-data" type="datetime-local" value={obterDataPadrao()} onChange={value => setDateTime(new Date(value.target.value))} />
                     <FloatingLabel className='mt-3' controlId="floatingTextarea2" label="Observação">
                         <Form.Control
                         as="textarea"

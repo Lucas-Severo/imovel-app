@@ -6,6 +6,7 @@ export function ListaAgendamento() {
     const [agendamentos, setAgendamentos] = useState<AgendamentoVisitaImovel[]>([])
 
     useEffect(() => {
+      // buscar todos os agendamentos do banco de dados
       buscarAgendamentos()
     }, [])
 
@@ -15,10 +16,12 @@ export function ListaAgendamento() {
       })
     }
 
+    // formatar data que está vindo do banco de dados
     const obterDataHoraFormatada = (agendamento: AgendamentoVisitaImovel) => {
       return agendamento.dataAgendamento.toDate().toLocaleString('pt-br')
     }
 
+    // Remover agendamento
     const removerAgendamento = async (agendamento: AgendamentoVisitaImovel) => {
       if (agendamento.id) {
         await removeAgendamentoById(agendamento.id)

@@ -15,10 +15,12 @@ export function ModalAlugar() {
         setImovel(location.state)
     }, [])
 
+    // retorna para a rota de detalhes do imóvel
     const handleClose = () => {
         navigate(`/imoveis/${id}`)
     }
 
+    // chama o método para atualizar a situação do imóvel para alugado
     const handleSave = async () => {
         if (imovel) {
             await alugarImovel(imovel)

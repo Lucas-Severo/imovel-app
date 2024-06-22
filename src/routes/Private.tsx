@@ -16,9 +16,11 @@ export function Private({ children }: PrivateProps): JSX.Element {
     const unsub = onAuthStateChanged(auth, (user) => {
       if (user) {
         setLoading(false);
+        // mudar para logado caso usuário autenticado
         dispatch({type: 'SET_LOGGED', payload: user})
       } else {
         setLoading(false);
+        // mudar para deslogado caso usuário não autenticado
         dispatch({type: 'SET_LOGGED', payload: user})
       }
     });

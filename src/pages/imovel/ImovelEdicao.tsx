@@ -30,6 +30,7 @@ export function ImovelEdicao() {
     const [permiteCompra, setPermiteCompra] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
 
+    // carregar informações salvas do imóvel
     useEffect(() => {
         if (id) {
             getImovelById(id).then(imovel => {
@@ -40,6 +41,7 @@ export function ImovelEdicao() {
         }
     }, [])
 
+    // método que atualiza imóvel e volta para a página de detalhes do imóvel
     const editarImovel = async () => {
         if(validarFormulario()) {
             await updateImovel(imovel)
@@ -47,6 +49,7 @@ export function ImovelEdicao() {
         }
     }
 
+    // validar se todas propriedades obrigatórias preenchidas
     const validarFormulario = () => {
         let message = ''
         if (imovel.descricao === undefined || imovel.descricao === '') {

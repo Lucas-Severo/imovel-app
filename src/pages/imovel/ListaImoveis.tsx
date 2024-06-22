@@ -6,6 +6,7 @@ export function ListaImoveis() {
 
     const [imoveis, setImoveis] = useState<Imovel[]>([])
 
+    // obter todos imóveis cadastrados
     useEffect(() => {
         getImoveis().then(imoveis => {
             setImoveis(imoveis)
